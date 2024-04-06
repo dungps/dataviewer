@@ -1,15 +1,26 @@
-# dataviewer
+# Dataviewer
 
-To install dependencies:
+This is a database management like TablePlus or DataGrip but it free
 
-```bash
-bun install
+# Development
+
+## Requirement
+
+- [Bun 1.1+](https://bun.sh)
+- [Go 1.21+](https://go.dev)
+- MacOS 13+
+
+## Start Development
+```shell
+make run
 ```
 
-To run:
-
-```bash
-bun run index.ts
+## Build assets
+```
+bun build index.ts
 ```
 
-This project was created using `bun init` in bun v1.1.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Build application
+```
+make build
+```

@@ -6,6 +6,6 @@ build:
 
 run:
 	@echo "Running..."
-	@go build -o $(PWD)/dataviewer.app/Contents/MacOS/dataviewer $(PWD)/main.go && open dataviewer.app
+	@bun build index.ts && go build -o $(PWD)/dataviewer.app/Contents/MacOS/dataviewer $(PWD)/main.go && open dataviewer.app
 
 .PHONY: build
