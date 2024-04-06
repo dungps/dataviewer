@@ -11,8 +11,8 @@
 			"mode": "auto",
 			"program": "${workspaceFolder}/main.go",
 			"cwd": "${workspaceFolder}",
-			"args": ["-config", "./conf.local.yaml"],
-			"preLaunchTask": "build assets"
+			// "args": ["-config", "./conf.local.yaml"],
+			// "preLaunchTask": "build assets"
 		}
 	]
 }

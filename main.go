@@ -1,23 +1,29 @@
 package main
 
 import (
-	"context"
-	"dataviewer/app"
-	"flag"
+	"dataviewer/package/webview"
+	"embed"
+
+	"github.com/progrium/macdriver/macos"
+	"github.com/progrium/macdriver/macos/appkit"
 )
 
-var configPath string
-
-func init() {
-	flag.StringVar(&configPath, "config", "./conf.yml", "path to config file")
-	flag.Parse()
-
-}
+//go:embed public/index.html public/assets/*.js public/assets/*.css
+var assetsFS embed.FS
 
 func main() {
-	a := app.New(context.Background(), configPath)
+	macos.RunApp(func(app appkit.Application, delegate *appkit.ApplicationDelegate) {
+		w := webview.New(true, assetsFS)
+		w.SetSize(1028, 768)
+		w.Title("Hello World")
+		w.Run()
 
-	if err := a.Start(); err != nil {
-		panic(err)
-	}
+		w.LoadURL("gofs:/public/index.html")
+
+		delegate.SetApplicationShouldTerminateAfterLastWindowClosed(func(appkit.Application) bool {
+			return true
+		})
+		app.SetActivationPolicy(appkit.ApplicationActivationPolicyRegular)
+		app.ActivateIgnoringOtherApps(true)
+	})
 }
